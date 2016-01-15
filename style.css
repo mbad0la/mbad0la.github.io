@@ -28,11 +28,18 @@ span
 }
 #caret
 {
-    position:absolute;
-    top:5px;
-    left:0px;
-    background-color:#FFFFFF;
-    animation-name:example;
-    animation-duration:1s;
-    animation-iteration-count:infinite;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    background-color: #FFFFFF;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+#display
+{
+    position: relative;
+    outline: 0px;
+    padding: 0px;
+    word-wrap: break-word;
 }
