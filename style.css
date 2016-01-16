@@ -36,7 +36,7 @@ span
     animation-duration: 1s;
     animation-iteration-count: infinite;
 }
-#display
+.display
 {
     position: relative;
     outline: 0px;
