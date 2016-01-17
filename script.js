@@ -9,6 +9,20 @@ $(function(){
     var caretposition = 0;
     var carettop = 0;
     var total = 0;
+    var commands = {};
+    
+    $.ajax({
+        url:'./commands.json',
+        type:'get',
+        dataType:'json',
+        success:function(r){
+            commands = r;
+            console.log(r);
+        },
+        error:function(r){
+            console.log("Couldn't retrieve the commands list. Please reload the page.");
+        }
+    });
 
     $(document).keydown(function(e){
         if(e.which===8)
@@ -84,16 +98,39 @@ $(function(){
     function executeCommand(str)
     {
         var splitCommands = str.split(" ");
-        var commandResponse;
+        var commandResponse = [];
         caretposition = 0;
         total = 0;
-        if(splitCommands[0]==="help")
+        
+        if(commands[splitCommands[0]])
         {
-            var myResponse = ["A Terminal based theme created by Mayank Badola.","These shell-like commands are user-defined.  Type `help' to see this list.","Type `help name' to find out more about the function `name'."," "];
-            for(var i=0;i<myResponse.length;i++)
+            if(splitCommands.length==1)
             {
-                ++carettop;
-                $('body').append('<br><span>'+myResponse[i]+'</span>');
+                commandResponse = commands[splitCommands[0]]["info"];
+                for(var i=0;i<commandResponse.length;i++)
+                {
+                    ++carettop;
+                    $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                }
+            }
+            else
+            {
+                if(splitCommands[0]=="help")
+                {
+                    if(commands[splitCommands[1]])
+                        commandResponse = commands[splitCommands[1]]["help"];
+                    else
+                    {
+                        var rsstr = "bash: help: no help topics match `"+splitCommands[1]+"'.";
+                        commandResponse = [rsstr,""];
+                    }
+                    
+                    for(var i=0;i<commandResponse.length;i++)
+                    {
+                        ++carettop;
+                        $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                    }
+                }
             }
             $('body').append('<span id="prompt">mbad0la@github:~$</span><span class="display active"></span>');
             $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
@@ -108,6 +145,5 @@ $(function(){
             $('.active').css('left',w);
         }
     }
-    
 });
 
