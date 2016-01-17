@@ -139,7 +139,7 @@ $(function(){
         else
         {
             carettop+=2;
-            $('body').append('<br><span>'+splitCommands[0]+': command not found</span>');
+            $('body').append("<br><span>"+splitCommands[0]+": command not found. Type `help' to see a list of available commands</span>");
             $('body').append('<br><span id="prompt">mbad0la@github:~$</span><span class="display active"></span>');
             $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
             $('.active').css('left',w);

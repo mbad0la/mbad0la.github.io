@@ -4,6 +4,8 @@
             "A Terminal based theme created by Mayank Badola.",
             "These shell-like commands and their outputs are user-defined.  Type `help' to see this list.",
             "Type `help name' to find out more about the function `name'.",
+            "",
+            " help [pattern ...]",
             ""
         ],
         "help": [
