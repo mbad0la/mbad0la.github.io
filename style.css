@@ -4,11 +4,12 @@ body
     margin-left: 5px;
     margin-top: 5px;
     padding: 0px;
-    background-color: #131111;
+    background-color: #300A24;
+    opacity: 0.8;
 }
 span
 {
-    white-space:pre;
+    white-space: pre;
     font-size: 16px;
     font-family: Monospace;
     color: #FFFFFF;
