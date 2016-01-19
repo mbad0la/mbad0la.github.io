@@ -5,7 +5,6 @@ body
     margin-top: 5px;
     padding: 0px;
     background-color: #300A24;
-    opacity: 0.8;
 }
 span
 {
@@ -44,4 +43,8 @@ span
     outline: 0px;
     padding: 0px;
     word-wrap: break-word;
+}
+.dir
+{
+    color:#80C0FF;
 }

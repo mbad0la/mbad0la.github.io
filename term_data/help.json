@@ -1,0 +1,25 @@
+{
+    "info": [
+        "A Terminal based theme created by Mayank Badola.",
+        "These shell-like commands and their outputs are user-defined.  Type `help' to see this list.",
+        "Type `help name' to find out more about the function `name'.",
+        "",
+        " help [pattern ...]",
+        ""
+    ],
+    "help": [
+        "help: help [pattern ...]",
+        "    Display information about builtin commands.",
+        "",
+        "    Displays brief summaries of builtin commands.",
+        "    If PATTERN is specified, gives detailed help on all commands matching PATTERN,",
+        "    otherwise the list of help topics is printed.",
+        "",
+        "    Arguments:",
+        "      PATTERN   Pattern specifiying a help topic",
+        "",
+        "    Exit Status:",
+        "    Returns success unless PATTERN is not found or an invalid option is given.",
+        ""
+    ]
+}

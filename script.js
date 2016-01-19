@@ -1,26 +1,38 @@
 $(function(){
+    var caretposition = 0;
+    var carettop = 0;
+    var total = 0;
+    var cdir = "~";
+    var commands = {};
     var w = $('#getsize')[0].getBoundingClientRect().width;
     var h = $('#getsize')[0].getBoundingClientRect().height;
-    var pw = $('#prompt')[0].getBoundingClientRect().width;
+    var pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
 
     $('#caret').css({'width':w,'height':h,'left':pw+w+5});
     $('.active').css('left',w);
 
-    var caretposition = 0;
-    var carettop = 0;
-    var total = 0;
-    var commands = {};
-    
     $.ajax({
-        url:'./commands.json',
+        url:'./term_data/help.json',
         type:'get',
         dataType:'json',
         success:function(r){
-            commands = r;
-            console.log(r);
+            commands["help"] = r;
         },
         error:function(r){
             console.log("Couldn't retrieve the commands list. Please reload the page.");
+        }
+    });
+    
+    $.ajax({
+        url:'./term_data/fs.json',
+        type:'get',
+        dataType:'json',
+        success:function(r){
+            commands["cd"] = r;
+            commands["ls"] = [];
+        },
+        error:function(r){
+            console.log("Couldn't retrieve the filesystem. Please reload the page.");
         }
     });
 
@@ -46,6 +58,7 @@ $(function(){
             e.preventDefault();
             var txt = $('.active').text();
             $('.active').removeClass('active');
+            $('.prompt').removeClass('prompt');
             $('#caret').css('display','none');
             executeCommand(txt);
         }
@@ -69,6 +82,10 @@ $(function(){
                     ++caretposition;
             }
         }
+        /*if(e.which===191)
+        {
+            e.stopPropagation();
+        }*/
         $('#caret').css('left',w*(caretposition+1)+pw+5);
     });
     
@@ -80,11 +97,13 @@ $(function(){
             {
                 if (e.which!=37||e.which!=39)
                 {
+                    e.preventDefault();
                     $('.active').append(String.fromCharCode(e.which));
                 }
             }
             else
             {
+                e.preventDefault();
                 var to_split = $('.active').text();
                 var left = to_split.substring(0,caretposition-1);
                 left+=String.fromCharCode(e.which);
@@ -106,19 +125,51 @@ $(function(){
         {
             if(splitCommands.length==1)
             {
-                commandResponse = commands[splitCommands[0]]["info"];
-                for(var i=0;i<commandResponse.length;i++)
+                if(splitCommands[0]!="ls")
                 {
-                    ++carettop;
-                    $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                    commandResponse = commands[splitCommands[0]]["info"];
+                    for(var i=0;i<commandResponse.length;i++)
+                    {
+                        ++carettop;
+                        $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                    }
+                }
+                else
+                {
+                    var inline = 0;
+                    commandResponse = commands["cd"][cdir];
+                    for(var i=0;i<commandResponse.length;i++)
+                    {
+                        ++carettop;
+                        inline = 0;
+                        var line = "";
+                        while(inline<8&&i<commandResponse.length)
+                        {
+                            var splitentity = commandResponse[i].split("_");
+                            if(splitentity[1]=="d")
+                                line+='<span class="dir">'+splitentity[0]+'</span>  ';
+                            else
+                                line+='<span>'+splitentity[0]+'</span>  ';
+                            ++i;
+                            ++inline;
+                        }
+                        ++carettop;
+                        $('body').append('<br><span>'+line+'</span>');
+                    }
+                    $('body').append('<br><span></span>');
+                }
+                
+                if(splitCommands[0]=="cd")
+                {
+                    cdir = "~";
                 }
             }
             else
             {
                 if(splitCommands[0]=="help")
                 {
-                    if(commands[splitCommands[1]])
-                        commandResponse = commands[splitCommands[1]]["help"];
+                    if(commands["help"][splitCommands[1]])
+                        commandResponse = commands["help"][splitCommands[1]];
                     else
                     {
                         var rsstr = "bash: help: no help topics match `"+splitCommands[1]+"'.";
@@ -131,8 +182,53 @@ $(function(){
                         $('body').append('<br><span>'+commandResponse[i]+'</span>');
                     }
                 }
+                else if(splitCommands[0]=="cd")
+                {
+                    if(commands["cd"][splitCommands[1]])
+                    {
+                        ++carettop;
+                        cdir = splitCommands[1];
+                        $('body').append('<br><span></span>');
+                    }
+                    else
+                    {
+                        var rsstr = "bash: cd: "+splitCommands[1]+": No such directory";
+                        commandResponse = [rsstr,""];
+                        for(var i=0;i<commandResponse.length;i++)
+                        {
+                            ++carettop;
+                            $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                        }
+                    }
+                    
+                }
+                else if(splitCommands[0]=="ls")
+                {
+                    var inline = 0;
+                    commandResponse = commands["cd"][splitCommands[1]];
+                    for(var i=0;i<commandResponse.length;i++)
+                    {
+                        ++carettop;
+                        inline = 0;
+                        var line = "";
+                        while(inline<8&&i<commandResponse.length)
+                        {
+                            var splitentity = commandResponse[i].split("_");
+                            if(splitentity[1]=="d")
+                                line+='<span class="dir">'+splitentity[0]+'</span>  ';
+                            else
+                                line+='<span>'+splitentity[0]+'</span>  ';
+                            ++i;
+                            ++inline;
+                        }
+                        ++carettop;
+                        $('body').append('<br><span>'+line+'</span>');
+                    }
+                    $('body').append('<br><span></span>');
+                }
             }
-            $('body').append('<span id="prompt">mbad0la@github:~$</span><span class="display active"></span>');
+            $('body').append('<span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
+            pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
             $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
             $('.active').css('left',w);
         }
@@ -145,7 +241,8 @@ $(function(){
                 carettop+=2;
                 $('body').append("<br><span>"+splitCommands[0]+": command not found. Type `help' to see a list of available commands</span>");
             }
-            $('body').append('<br><span id="prompt">mbad0la@github:~$</span><span class="display active"></span>');
+            $('body').append('<br><span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
+            pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
             $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
             $('.active').css('left',w);
         }

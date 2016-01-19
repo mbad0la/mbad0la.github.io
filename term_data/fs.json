@@ -1,0 +1,40 @@
+{
+    "info": [
+        ""
+    ],
+    ".": [
+        ""
+    ],
+    "..": [
+        ""
+    ],
+    "~": [
+        "workx.txt_f",
+        "projects_d",
+        "research.txt_f",
+        "skills.txt_f"
+    ],
+    "~/projects": [
+        "MiniGithub_d",
+        "MindMapper_d",
+        "octoAPy_d",
+        "overview.txt_f",
+        "txtgrow_d"
+    ],
+    "~/projects/Minigithub": [
+        "techUsed.txt_f",
+        "description.txt_f"
+    ],
+    "~/projects/MindMapper": [
+        "techUsed.txt_f",
+        "description.txt_f"
+    ],
+    "~/projects/octoAPy": [
+        "techUsed.txt_f",
+        "description.txt_f"
+    ],
+    "~/projects/txtgrow": [
+        "techUsed.txt_f",
+        "description.txt_f"
+    ]
+}
