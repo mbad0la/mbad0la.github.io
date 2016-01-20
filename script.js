@@ -2,6 +2,7 @@ $(function(){
     var caretposition = 0;
     var carettop = 0;
     var total = 0;
+    var prevdir = "~";
     var cdir = "~";
     var commands = {};
     var w = $('#getsize')[0].getBoundingClientRect().width;
@@ -184,10 +185,43 @@ $(function(){
                 }
                 else if(splitCommands[0]=="cd")
                 {
+                    if(splitCommands[1][0]!='/'&&splitCommands[1]!=".."&&splitCommands[1]!="."&&splitCommands[1][0]!="~"&&splitCommands[1]!="-")
+                    {
+                        splitCommands[1]=cdir+'/'+splitCommands[1];
+                    }
                     if(commands["cd"][splitCommands[1]])
                     {
                         ++carettop;
-                        cdir = splitCommands[1];
+                        if(splitCommands[1]==".")
+                        ;
+                        else if(splitCommands[1]=="..")
+                        {
+                            var dirsplit = cdir.split('/');
+                            var newcdir = "";
+                            for(var j=0;j<dirsplit.length-1;j++)
+                                newcdir+=dirsplit[j]+"/";
+                            if(newcdir!="")
+                            {
+                                newcdir = newcdir.substring(0,newcdir.length-1);
+                                prevdir = cdir;
+                                cdir = newcdir;
+                            }
+                        }
+                        else
+                        {
+                            if(splitCommands[1]=="-")
+                            {
+                                var tempdir = cdir;
+                                cdir = prevdir;
+                                prevdir = tempdir;
+                            }
+                            else
+                            {
+                                prevdir = cdir;
+                                cdir = splitCommands[1];
+                            }
+                        }
+                        
                         $('body').append('<br><span></span>');
                     }
                     else
