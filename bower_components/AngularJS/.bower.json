@@ -1,0 +1,20 @@
+{
+  "name": "AngularJS",
+  "devDependencies": {
+    "jquery": "2.1.1",
+    "closure-compiler": "https://dl.google.com/closure-compiler/compiler-20140814.zip",
+    "ng-closure-runner": "https://raw.github.com/angular/ng-closure-runner/v0.2.3/assets/ng-closure-runner.zip"
+  },
+  "homepage": "https://github.com/angular/angular.js",
+  "version": "1.4.9",
+  "_release": "1.4.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.4.9",
+    "commit": "5de88702fec98803ff15de203590c6abaf8aa523"
+  },
+  "_source": "git://github.com/angular/angular.js.git",
+  "_target": "~1.4.9",
+  "_originalSource": "angular-latest",
+  "_direct": true
+}
