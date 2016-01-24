@@ -192,9 +192,7 @@ $(function(){
                     if(commands["cd"][splitCommands[1]])
                     {
                         ++carettop;
-                        if(splitCommands[1]==".")
-                        ;
-                        else if(splitCommands[1]=="..")
+                        if(splitCommands[1]=="..")
                         {
                             var dirsplit = cdir.split('/');
                             var newcdir = "";

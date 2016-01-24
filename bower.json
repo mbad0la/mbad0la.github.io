@@ -1,0 +1,23 @@
+{
+  "name": "mbad0la.github.io",
+  "homepage": "https://github.com/mbad0la/mbad0la.github.io",
+  "authors": [
+    "Mayank Badola <badola21295@gmail.com>"
+  ],
+  "description": "My personal website",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AngularJS": "angular-latest#~1.4.9",
+    "bootstrap": "~3.3.6"
+  }
+}
