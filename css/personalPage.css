@@ -1,0 +1,37 @@
+#fb_link,#linkedin_link,#github_link
+{
+    text-decoration: none;
+    padding:0px;
+    outline:none;
+    border:none;
+    display: block;
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 46px;
+    text-align: center;
+    font-size: 20px;
+    color: #868686;
+    background-color: rgba(153, 153, 153, 0.54);
+    box-shadow: 0px 0px 5px rgb(188, 179, 179);
+    transition: background-color 0.6s, color 0.6s;
+}
+#fb_link:hover
+{
+    cursor: pointer;
+    background-color: #546B9E;
+    color:#FFF;
+}
+#linkedin_link:hover
+{
+    cursor: pointer;
+    background-color: rgb(48, 166, 231);
+    color:#FFF;
+}
+#github_link:hover
+{
+    cursor: pointer;
+    background-color: #6E6E6E;
+    color:#FFF;
+}
