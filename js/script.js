@@ -13,7 +13,7 @@ $(function(){
     $('.active').css('left',w);
 
     $.ajax({
-        url:'../term_data/help.json',
+        url:'./term_data/help.json',
         type:'get',
         dataType:'json',
         success:function(r){
@@ -25,7 +25,7 @@ $(function(){
     });
     
     $.ajax({
-        url:'../term_data/fs.json',
+        url:'./term_data/fs.json',
         type:'get',
         dataType:'json',
         success:function(r){
@@ -34,6 +34,18 @@ $(function(){
         },
         error:function(r){
             console.log("Couldn't retrieve the filesystem. Please reload the page.");
+        }
+    });
+    
+    $.ajax({
+        url:'./term_data/cat.json',
+        type:'get',
+        dataType:'json',
+        success:function(r){
+            commands["cat"] = r;
+        },
+        error:function(r){
+            console.log("Couldn't retrieve text files' data. Please reload the page.");
         }
     });
 
@@ -126,7 +138,7 @@ $(function(){
         {
             if(splitCommands.length==1)
             {
-                if(splitCommands[0]!="ls")
+                if(splitCommands[0]=="help")
                 {
                     commandResponse = commands[splitCommands[0]]["info"];
                     for(var i=0;i<commandResponse.length;i++)
@@ -135,7 +147,7 @@ $(function(){
                         $('body').append('<br><span>'+commandResponse[i]+'</span>');
                     }
                 }
-                else
+                else if(splitCommands[0]=="ls")
                 {
                     var inline = 0;
                     commandResponse = commands["cd"][cdir];
@@ -159,13 +171,12 @@ $(function(){
                     }
                     $('body').append('<br><span></span>');
                 }
-                
-                if(splitCommands[0]=="cd")
+                else if(splitCommands[0]=="cd")
                 {
                     cdir = "~";
                 }
             }
-            else
+            else if(splitCommands.length==2)
             {
                 if(splitCommands[0]=="help")
                 {
@@ -258,6 +269,20 @@ $(function(){
                     }
                     $('body').append('<br><span></span>');
                 }
+                else if(splitCommands[0]=="cat")
+                {
+                    commandResponse = commands["cat"][cdir + '/' + splitCommands[1]];
+                    for(var i=0;i<commandResponse.length;i++)
+                    {
+                        ++carettop;
+                        $('body').append('<br><span>'+commandResponse[i]+'</span>');
+                    }
+                }
+            }
+            else
+            {
+                ++carettop;
+                $('body').append('<br>');
             }
             $('body').append('<span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
             pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;

@@ -1,0 +1,42 @@
+{
+    "~/workx.txt": [
+        " CONTYXT | Co-Founder    (July 2015 - Present)",
+        "    * Part of the core team of this bootstrapped start-up.",
+        "    * Involved in the product development and managing the core team.",
+        "    * Had hands-on experience of deploying code on AWS, a well known IaaS.",
+        "    * Setup LAMP, Redis, NodeJS, Neo4J on the Server running a Linux instance.",
+        "    * Responsible for developing the front-end and integration with backend services.",
+        "",
+        " COLLOQUIUM - NSIT DEBATING SOCIETY FEST | Web Developer    (Dec 2014)",
+        "    * Led this project of managing the website for the debating society's fest of our college.",
+        "    * Wordpress was successfully used as a Content Management System which helped us to get the",
+        "      website working as soon as possible.",
+        "",
+        " IEEE-NSIT WEB DEV SIG | Mentor    (Oct 2014)",
+        "    * Mentored a class of 30 students on Web Design and Development.",
+        ""
+    ],
+    "~/research.txt": [
+        " AUTOMATED MELANOMA RECOGNITION | Undergraduate Research Asst.   (Dec 2015 - Present)",
+        "    * Working under Professor Anand Gupta (NSIT) on training systems to predict melanoma accurately.",
+        ""
+    ],
+    "~/skills.txt": [
+        ""
+    ],
+    "~/projects/overview.txt": [
+        ""
+    ],
+    "~/projects/MiniGithub/description.txt": [
+        ""
+    ],
+    "~/projects/MindMapper/description.txt": [
+        ""
+    ],
+    "~/projects/octoAPy/description.txt": [
+        ""
+    ],
+    "~/projects/txtgrow/description.txt": [
+        ""
+    ]
+}
