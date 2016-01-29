@@ -15,13 +15,14 @@
         "workx.txt_f",
         "projects_d",
         "research.txt_f",
-        "skills.txt_f"
+        "aboutme.txt_f"
     ],
     "~/projects": [
         "MiniGithub_d",
         "MindMapper_d",
         "octoAPy_d",
         "overview.txt_f",
+        "TweetGem_d",
         "txtgrow_d"
     ],
     "~/projects/MiniGithub": [
@@ -31,6 +32,9 @@
         "description.txt_f"
     ],
     "~/projects/octoAPy": [
+        "description.txt_f"
+    ],
+    "~/projects/TweetGem": [
         "description.txt_f"
     ],
     "~/projects/txtgrow": [

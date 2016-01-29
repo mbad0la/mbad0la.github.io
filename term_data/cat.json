@@ -21,13 +21,56 @@
         "    * Working under Professor Anand Gupta (NSIT) on training systems to predict melanoma accurately.",
         ""
     ],
-    "~/skills.txt": [
+    "~/aboutme.txt": [
+        " I am a 3rd year Computer Science Undergraduate Student at the Netaji Subhas Institute of Technology.",
+        " Always motivated to try out new technologies and services, Web Development calls out to my inquisitive",
+        " nature facilitating me to amass knowledge to satisfy my curiosity to figure out new things and achieve",
+        " targets. The only instance of my cursioty not working for me is when I priortise my interests over",
+        " my college curriculum :P",
+        "",
+        " LANGUAGES FAMILIAR WITH :",
+        "  * JavaScript",
+        "  * C++",
+        "  * C",
+        "  * Python",
+        "  * Ruby",
+        "  * PHP",
+        "  * VHDL",
+        "  * MATLAB",
+        "",
+        " SOFTWARES, FRAMEWORKS AND SERVICES :",
+        "  * AWS",
+        "  * Heroku",
+        "  * Git",
+        "  * npm",
+        "  * jpm",
+        "  * bower",
+        "  * Bootstrap",
+        "  * AngularJS",
+        "  * React",
+        "  * jQuery",
+        "",
+        " FREEBIES :",
+        "  * HTML",
+        "  * CSS",
+        "  * My awesome self xD",
         ""
     ],
     "~/projects/overview.txt": [
+        " Being an avid developer gave rise to these random projects i decided to take up",
+        " on my own time. Implemented mostly to learn a new skill or to get a know-how of some service,",
+        " I definitely had some fun developing these projects.",
+        "   * MiniGithub(Firefox add-on | jpm,javascript,html,css)",
+        "   * TweetGem(Twitter API wrapper | ruby)",
+        "   * MindMapper(App to create Mind Maps | python)",
+        "   * octoAPy(Github API wrapper | python)",
+        "   * txtgrow(jQuery Plugin | javascript)",
         ""
     ],
     "~/projects/MiniGithub/description.txt": [
+        ""
+    ],
+    "~/projects/TweetGem/description.txt": [
         ""
     ],
     "~/projects/MindMapper/description.txt": [
