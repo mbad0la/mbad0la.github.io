@@ -6,6 +6,21 @@ body
     padding: 0px;
     background-color: #300A24;
 }
+::selection
+{
+  background: rgba(255,255,255,0.99);
+  color: rgba(48,10,36,0.99);
+}
+::-webkit-selection
+{
+  background: rgba(255,255,255,0.99);
+  color: rgba(48,10,36,0.99);
+}
+::-moz-selection
+{
+  background: rgba(255,255,255,0.99);
+  color: rgba(48,10,36,0.99);
+}
 span
 {
     white-space: pre;
