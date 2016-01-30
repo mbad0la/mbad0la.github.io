@@ -68,18 +68,39 @@
         ""
     ],
     "~/projects/MiniGithub/description.txt": [
+        " MiniGithub is a web extension facilitating open-source enthusiasts to stay connected",
+        " with their Github Accounts 24x7 by making available critical information like events from",
+        " people you have followed, your notifications and the newest trending repositories.",
+        " I decided to take up this project because I wanted to learn how web extensions are made.",
+        " And thus came MiniGithub into existence.",
         ""
     ],
     "~/projects/TweetGem/description.txt": [
+        " The name is self explainatory. A ruby gem for the Twitter API methods.",
+        " It never hurts to have a gem to help extract social data from websites like",
+        " Twitter. Working on this API wrapper gave me some much needed practice on",
+        " practical implementation on the Ruby language.",
         ""
     ],
     "~/projects/MindMapper/description.txt": [
-        ""
+       " Well, this was inevitable because i had to do it for my college curriculum.",
+       " Though i'm not much of fan of anything my college instructs me to do, this",
+       " project introduced me to some graphical implementation through python and",
+       " i'm starting to like what we might end up with.",
+       ""
     ],
     "~/projects/octoAPy/description.txt": [
+         " My first experimentation with API wrappers, i decided to do it for Github's API.",
+        " Easy to understand documentation bundled with my fascination with Github led me",
+        " to start this project. Though the reason i wanted to write something was because",
+        " i wanted to see Python in action.",
         ""
     ],
     "~/projects/txtgrow/description.txt": [
+        " I started my open-source journey through this project. txtgrow as the name suggest",
+        " is a javascript hack for textareas that make them grow as the text in them overflows.",
+        " As jQuery is quite popular amongst front-end devs, i further decided to make this hack a",
+        " JQuery plugin so as to make this functionality easy to use.",
         ""
     ]
 }
