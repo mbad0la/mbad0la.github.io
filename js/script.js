@@ -66,6 +66,137 @@ $(function(){
                 }
             }
         }
+        if(e.which===9)
+        {
+            e.preventDefault();
+            if(total==caretposition)
+            {
+                var currval = $('.active').text();
+                var splitted = currval.split(' ');
+                if(splitted.length==1)
+                {
+                    var matches = [];
+                    var re = new RegExp("^"+splitted[0]);
+                    for( var key in commands )
+                    {
+                        //console.log(key.match(re));
+                        var regExResponse = re.exec(key);
+                        if(regExResponse)
+                        {
+                            matches.push(regExResponse["input"]);
+                        }
+                    }
+                    if(matches.length==1)
+                    {
+                        caretposition+=matches[0].length-currval.length+1;
+                        total+=matches[0].length-currval.length+1;
+                        $('.active').text(matches[0]+' ');
+                    }
+                    else if(matches.length>1)
+                    {
+                        var outputstr = '';
+                        for(var itr=0;itr<matches.length;itr++)
+                        {
+                            outputstr+=matches[itr]+"    ";
+                        }
+                        $('.active').removeClass('active');
+                        $('.prompt').removeClass('prompt');
+                        $('#caret').css('display','none');
+                        caretposition = currval.length;
+                        total = currval.length;
+                        carettop+=2;
+                        $('body').append('<br><span>'+outputstr+'</span>');
+                        $('body').append('<br><span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
+                        pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
+                        $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
+                        $('.active').css('left',w);
+                        $('.active').text(currval);
+                    }
+                }
+                else if(splitted.length>1)
+                {
+                    if(splitted[0]=="cd"||splitted[0]=="ls")
+                    {
+                        var matches = [];
+                        var re = new RegExp("^"+splitted[1]+"\..*_d$");
+                        for( var index in commands["cd"][cdir] )
+                        {
+                            var regExResponse = re.exec(commands["cd"][cdir][index]);
+                            if(regExResponse)
+                            {
+                                matches.push(regExResponse["input"]);
+                            }
+                        }
+                        if(matches.length==1)
+                        {
+                            caretposition+=matches[0].length-2-splitted[1].length;
+                            total+=matches[0].length-2-splitted[1].length;
+                            $('.active').text(splitted[0]+' '+matches[0].substr(0,matches[0].length-2));
+                        }
+                        else if(matches.length>1)
+                        {
+                            var outputstr = '';
+                            for(var itr=0;itr<matches.length;itr++)
+                            {
+                                outputstr+=matches[itr].substr(0,matches[itr].length-2)+"    ";
+                            }
+                            $('.active').removeClass('active');
+                            $('.prompt').removeClass('prompt');
+                            $('#caret').css('display','none');
+                            caretposition = currval.length;
+                            total = currval.length;
+                            carettop+=2;
+                            $('body').append('<br><span>'+outputstr+'</span>');
+                            $('body').append('<br><span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
+                            pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
+                            $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
+                            $('.active').css('left',w);
+                            $('.active').text(currval);
+                        }
+                    }
+                    else if(splitted[0]=="cat")
+                    {
+                        var matches = [];
+                        var re = new RegExp("^"+splitted[1]+"\..*_f$");
+                        for( var index in commands["cd"][cdir] )
+                        {
+                            var regExResponse = re.exec(commands["cd"][cdir][index]);
+                            if(regExResponse)
+                            {
+                                matches.push(regExResponse["input"]);
+                            }
+                        }
+                        if(matches.length==1)
+                        {
+                            caretposition+=matches[0].length-2-splitted[1].length;
+                            total+=matches[0].length-2-splitted[1].length;
+                            $('.active').text(splitted[0]+' '+matches[0].substr(0,matches[0].length-2));
+                        }
+                        else if(matches.length>1)
+                        {
+                            var outputstr = '';
+                            for(var itr=0;itr<matches.length;itr++)
+                            {
+                                outputstr+=matches[itr].substr(0,matches[itr].length-2)+"    ";
+                            }
+                            $('.active').removeClass('active');
+                            $('.prompt').removeClass('prompt');
+                            $('#caret').css('display','none');
+                            caretposition = currval.length;
+                            total = currval.length;
+                            carettop+=2;
+                            $('body').append('<br><span>'+outputstr+'</span>');
+                            $('body').append('<br><span id="prompt'+carettop+'">mbad0la@github:'+cdir+'$</span><span class="display active"></span>');
+                            pw = $('#prompt'+carettop)[0].getBoundingClientRect().width;
+                            $('#caret').css({'left':w*(caretposition+1)+pw+5,'top':carettop*h+5,'display':'block'});
+                            $('.active').css('left',w);
+                            $('.active').text(currval);
+                        }
+                    }
+                }
+            }
+            
+        }
         if(e.which===13)
         {
             e.preventDefault();
@@ -248,7 +379,7 @@ $(function(){
                 else if(splitCommands[0]=="ls")
                 {
                     var inline = 0;
-                    commandResponse = commands["cd"][splitCommands[1]];
+                    commandResponse = commands["cd"][cdir+"/"+splitCommands[1]];
                     for(var i=0;i<commandResponse.length;i++)
                     {
                         ++carettop;
