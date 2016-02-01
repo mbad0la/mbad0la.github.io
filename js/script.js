@@ -77,7 +77,6 @@ $(function(){
             {
                 var currval = $('.active').text();
                 var splitted = currval.split(' ');
-                console.log(currval)
                 if(splitted.length==1)
                 {
                     var matches = [];
@@ -212,7 +211,10 @@ $(function(){
               pointer = stack_size - 1;
             }
             $('.active').text(stack[pointer]);
+
             caretposition = stack[pointer].length;
+            total =  stack[pointer].length;
+
             pointer--;
         }
 
