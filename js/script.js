@@ -206,11 +206,12 @@ $(function(){
         if(e.which===38)
         {
             e.preventDefault();
+            total++;
             if(pointer < 0)
             {
               pointer = stack_size - 1;
             }
-            var x = document.getElementsByClassName("display active")[0].innerHTML = stack[pointer];
+            $('.active').text(stack[pointer]);
             caretposition = stack[pointer].length;
             pointer--;
         }
@@ -468,9 +469,12 @@ $(function(){
 
     function storeInStack(str)
     {
-      stack.push(str);
-      stack_size++;
-      pointer = stack_size - 1;
+      if(str != stack[pointer])
+      {
+        stack.push(str);
+        stack_size++;
+        pointer = stack_size - 1;
+      }
     }
 
 });
