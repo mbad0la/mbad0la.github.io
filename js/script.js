@@ -201,29 +201,6 @@ $(function(){
             }
 
         }
-
-        if(e.which===38)
-        {
-            e.preventDefault();
-            total++;
-            if(pointer < 0)
-            {
-              pointer = stack_size - 1;
-            }
-            $('.active').text(stack[pointer]);
-
-            caretposition = stack[pointer].length;
-            total =  stack[pointer].length;
-
-            pointer--;
-        }
-
-        if(e.which != 38)
-        {
-          pointer = stack_size - 1;
-        }
-
-
         if(e.which===13)
         {
             e.preventDefault();
@@ -243,6 +220,24 @@ $(function(){
                     --caretposition;
             }
         }
+        if(e.which===38)
+        {
+            e.preventDefault();
+            if(pointer < 0)
+            {
+              pointer = stack_size - 1;
+            }
+            $('.active').text(stack[pointer]);
+
+            caretposition = stack[pointer].length;
+            total =  stack[pointer].length;
+
+            pointer--;
+        }
+        if(e.which != 38)
+        {
+          pointer = stack_size - 1;
+        }
         if(e.which===39)
         {
             e.preventDefault();
@@ -253,10 +248,6 @@ $(function(){
                     ++caretposition;
             }
         }
-        /*if(e.which===191)
-        {
-            e.stopPropagation();
-        }*/
         $('#caret').css('left',w*(caretposition+1)+pw+5);
     });
 
