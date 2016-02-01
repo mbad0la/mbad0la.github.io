@@ -1,4 +1,7 @@
 $(function(){
+    var stack = new Array();
+    var stack_size = 0;
+    var pointer = 0;
     var caretposition = 0;
     var carettop = 0;
     var total = 0;
@@ -23,7 +26,7 @@ $(function(){
             console.log("Couldn't retrieve the commands list. Please reload the page.");
         }
     });
-    
+
     $.ajax({
         url:'./term_data/fs.json',
         type:'get',
@@ -36,7 +39,7 @@ $(function(){
             console.log("Couldn't retrieve the filesystem. Please reload the page.");
         }
     });
-    
+
     $.ajax({
         url:'./term_data/cat.json',
         type:'get',
@@ -50,6 +53,7 @@ $(function(){
     });
 
     $(document).keydown(function(e){
+
         if(e.which===8)
         {
             e.preventDefault();
@@ -73,6 +77,7 @@ $(function(){
             {
                 var currval = $('.active').text();
                 var splitted = currval.split(' ');
+                console.log(currval)
                 if(splitted.length==1)
                 {
                     var matches = [];
@@ -195,8 +200,27 @@ $(function(){
                     }
                 }
             }
-            
+
         }
+
+        if(e.which===38)
+        {
+            e.preventDefault();
+            if(pointer < 0)
+            {
+              pointer = stack_size - 1;
+            }
+            var x = document.getElementsByClassName("display active")[0].innerHTML = stack[pointer];
+            caretposition = stack[pointer].length;
+            pointer--;
+        }
+
+        if(e.which != 38)
+        {
+          pointer = stack_size - 1;
+        }
+
+
         if(e.which===13)
         {
             e.preventDefault();
@@ -232,7 +256,7 @@ $(function(){
         }*/
         $('#caret').css('left',w*(caretposition+1)+pw+5);
     });
-    
+
     $(document).keypress(function(e){
         setTimeout(function(){
             ++caretposition;
@@ -257,14 +281,20 @@ $(function(){
             $('#caret').css('left',w*(caretposition+1)+pw+5);
         },30);
     });
-    
+
     function executeCommand(str)
     {
+
+        if(str.length >= 1)
+        {
+          storeInStack(str);
+        }
+
         var splitCommands = str.split(" ");
         var commandResponse = [];
         caretposition = 0;
         total = 0;
-        
+
         if(commands[splitCommands[0]])
         {
             if(splitCommands.length==1)
@@ -318,7 +348,7 @@ $(function(){
                         var rsstr = "bash: help: no help topics match `"+splitCommands[1]+"'.";
                         commandResponse = [rsstr,""];
                     }
-                    
+
                     for(var i=0;i<commandResponse.length;i++)
                     {
                         ++carettop;
@@ -361,7 +391,7 @@ $(function(){
                                 cdir = splitCommands[1];
                             }
                         }
-                        
+
                         $('body').append('<br><span></span>');
                     }
                     else
@@ -374,7 +404,7 @@ $(function(){
                             $('body').append('<br><span>'+commandResponse[i]+'</span>');
                         }
                     }
-                    
+
                 }
                 else if(splitCommands[0]=="ls")
                 {
@@ -435,5 +465,12 @@ $(function(){
             $('.active').css('left',w);
         }
     }
-});
 
+    function storeInStack(str)
+    {
+      stack.push(str);
+      stack_size++;
+      pointer = stack_size - 1;
+    }
+
+});
