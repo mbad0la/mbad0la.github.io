@@ -330,6 +330,8 @@ $(function(){
                 }
                 else if(splitCommands[0]=="cd")
                 {
+                    ++carettop;
+                    $('body').append('<br>');
                     cdir = "~";
                 }
                 else if(splitCommands[0]=="clear")
@@ -377,6 +379,10 @@ $(function(){
                                 prevdir = cdir;
                                 cdir = newcdir;
                             }
+                        }
+                        else if(splitCommands[1]==".")
+                        {
+                            ;
                         }
                         else
                         {

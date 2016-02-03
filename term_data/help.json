@@ -5,7 +5,7 @@
         "Type `help name' to find out more about the function `name'.",
         "",
         " help [pattern ...]        ls",
-        " cd",
+        " cd                        cat",
         ""
     ],
     "help": [
