@@ -33,6 +33,9 @@
                     <img src="rains2.jpg" />
                 </div>
                 <div id="face"></div>
+                <img id="ghub_contri" src="http://ghchart.rshah.org/mbad0la"/>
+                <div id="my-name"><span>Mayank</span><span>Badola</span></div>
+                
             </div>
             
             <div id="section-2">
@@ -43,6 +46,14 @@
             <script>
                 $(function(){
                     $("#section-1").css('height',window.innerHeight);
+                    
+                    $(document).scroll(function(){
+                        var scrolled = $(this).scrollTop();
+                        if(scrolled<window.innerHeight){
+                        
+                        }
+                        
+                    });
                     
                     window.onresize = function(){
                         $("#section-1").css('height',window.innerHeight);
