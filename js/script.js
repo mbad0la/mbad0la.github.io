@@ -23,7 +23,7 @@ $(function(){
             commands["help"] = r;
         },
         error:function(r){
-            console.log("Couldn't retrieve the commands list. Please reload the page.");
+            alert("Couldn't retrieve the commands list. Please reload the page.");
         }
     });
 
@@ -36,7 +36,7 @@ $(function(){
             commands["ls"] = [];
         },
         error:function(r){
-            console.log("Couldn't retrieve the filesystem. Please reload the page.");
+            alert("Couldn't retrieve the filesystem. Please reload the page.");
         }
     });
 
@@ -49,7 +49,7 @@ $(function(){
             commands["clear"] = [];
         },
         error:function(r){
-            console.log("Couldn't retrieve text files' data. Please reload the page.");
+            alert("Couldn't retrieve text files' data. Please reload the page.");
         }
     });
 
@@ -224,19 +224,21 @@ $(function(){
         if(e.which===38)
         {
             e.preventDefault();
+            if(pointer == stack_size)
+            {
+              pointer = 0;
+            }
             if(pointer < 0)
             {
               pointer = stack_size - 1;
             }
-            if(pointer>=0)
-            {
-                $('.active').text(stack[pointer]);
-                caretposition = stack[pointer].length;
-                total =  stack[pointer].length;
-                pointer--;
-            }
+            console.log(pointer);
+            $('.active').text(stack[pointer]);
+            caretposition = stack[pointer].length;
+            total =  stack[pointer].length;
+            pointer--;
         }
-        if(e.which != 38)
+        if(e.which != 38 && e.which != 40)
         {
           pointer = stack_size - 1;
         }
@@ -249,6 +251,23 @@ $(function(){
                 if(caretposition<total)
                     ++caretposition;
             }
+        }
+        if(e.which===40)
+        {
+            e.preventDefault();
+            if(pointer == stack_size)
+            {
+              pointer = 0;
+            }
+            if(pointer < 0)
+            {
+              pointer = stack_size - 1;
+            }
+            console.log(pointer);
+            $('.active').text(stack[pointer]);
+            caretposition = stack[pointer].length;
+            total =  stack[pointer].length;
+            pointer++;
         }
         $('#caret').css('left',w*(caretposition+1)+pw+5);
     });
@@ -323,9 +342,9 @@ $(function(){
                             ++i;
                             ++inline;
                         }
-                        ++carettop;
                         $('body').append('<br><span>'+line+'</span>');
                     }
+                    ++carettop;
                     $('body').append('<br><span></span>');
                 }
                 else if(splitCommands[0]=="cd")
@@ -453,7 +472,7 @@ $(function(){
                         carettop+=2;
                         $('body').append('<br><span>cat: '+splitCommands[1]+': No such file</span><br>');
                     }
-                    
+
                 }
             }
             else

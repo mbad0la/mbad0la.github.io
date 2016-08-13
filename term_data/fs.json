@@ -9,26 +9,27 @@
         ""
     ],
     "-": [
-        ""    
+        ""
     ],
     "~": [
-        "workx.txt_f",
+        "experience.txt_f",
         "projects_d",
-        "research.txt_f",
         "aboutme.txt_f"
     ],
     "~/projects": [
         "MiniGithub_d",
-        "MindMapper_d",
         "octoAPy_d",
         "overview.txt_f",
         "TweetGem_d",
-        "txtgrow_d"
+        "txtgrow_d",
+        "nyan-cat_d",
+        "HelloWorld_d",
+        "Architect_d",
+        "all-contributors-atom_d",
+        "mbad0la.github.io_d",
+        "Get-ENVS_d"
     ],
     "~/projects/MiniGithub": [
-        "description.txt_f"
-    ],
-    "~/projects/MindMapper": [
         "description.txt_f"
     ],
     "~/projects/octoAPy": [
@@ -38,6 +39,24 @@
         "description.txt_f"
     ],
     "~/projects/txtgrow": [
+        "description.txt_f"
+    ],
+    "~/projects/nyan-cat": [
+        "description.txt_f"
+    ],
+    "~/projects/HelloWorld": [
+        "description.txt_f"
+    ],
+    "~/projects/Architect": [
+        "description.txt_f"
+    ],
+    "~/projects/all-contributors-atom": [
+        "description.txt_f"
+    ],
+    "~/projects/mbad0la.github.io": [
+        "description.txt_f"
+    ],
+    "~/projects/Get-ENVS": [
         "description.txt_f"
     ]
 }
